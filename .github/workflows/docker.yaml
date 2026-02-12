@@ -1,0 +1,14 @@
+name: Docker Build and Run
+on:
+  push:
+    branches: [ main ]
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Build Docker image
+      run: docker build -t emcimage .
+    - name: Run container
+      run: docker container run -dt --name emcapp emcimage
